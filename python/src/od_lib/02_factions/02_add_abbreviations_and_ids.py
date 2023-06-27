@@ -4,10 +4,10 @@ import numpy as np
 import os
 
 # input directory
-FACTIONS_STAGE_01 = path_definitions.FACTIONS_STAGE_01
+FACTIONS_STAGE_01 = "01/"
 
 # output directory
-DATA_FINAL = path_definitions.DATA_FINAL
+DATA_FINAL = "../final"
 
 if not os.path.exists(DATA_FINAL):
     os.makedirs(DATA_FINAL)

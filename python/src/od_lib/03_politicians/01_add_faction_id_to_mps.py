@@ -1,13 +1,13 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import os
 
 # input directory
-POLITICIANS_INPUT = path_definitions.POLITICIANS_STAGE_01
-FACTIONS_INPUT = path_definitions.DATA_FINAL
+POLITICIANS_INPUT = "../01_preprocessing/06/"
+FACTIONS_INPUT = "../final/"
 
 # output directory
-POLITICIANS_OUTPUT = path_definitions.POLITICIANS_STAGE_02
+POLITICIANS_OUTPUT = "01/"
 
 if not os.path.exists(POLITICIANS_OUTPUT):
     os.makedirs(POLITICIANS_OUTPUT)

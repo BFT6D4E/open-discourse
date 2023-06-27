@@ -1,13 +1,13 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import xml.etree.ElementTree as et
 import os
 import regex
 
 # input directory
-ELECTORAL_TERM_19_20_INPUT = path_definitions.ELECTORAL_TERM_19_20_STAGE_01
+ELECTORAL_TERM_19_20_INPUT = "02/"
 
 # output directory
-ELECTORAL_TERM_19_20_OUTPUT = path_definitions.ELECTORAL_TERM_19_20_STAGE_02
+ELECTORAL_TERM_19_20_OUTPUT = "05/"
 
 for electoral_term_folder in sorted(os.listdir(ELECTORAL_TERM_19_20_INPUT)):
     electoral_term_folder_path = os.path.join(

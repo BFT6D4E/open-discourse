@@ -1,10 +1,10 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import datetime
 import os
 
 # output directory
-ELECTORAL_TERMS = path_definitions.ELECTORAL_TERMS
+ELECTORAL_TERMS = "07/"
 save_path = os.path.join(ELECTORAL_TERMS, "electoral_terms.csv")
 
 if not os.path.exists(ELECTORAL_TERMS):

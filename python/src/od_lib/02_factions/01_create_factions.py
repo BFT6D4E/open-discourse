@@ -1,13 +1,13 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import numpy as np
 import os
 
 # input directory
-POLITICIANS_STAGE_01 = path_definitions.POLITICIANS_STAGE_01
+POLITICIANS_STAGE_01 = "../01_preprocessing/06/"
 
 # output directory
-FACTIONS_STAGE_01 = path_definitions.FACTIONS_STAGE_01
+FACTIONS_STAGE_01 = "01/"
 save_path_factions = os.path.join(FACTIONS_STAGE_01, "factions.pkl")
 
 if not os.path.exists(FACTIONS_STAGE_01):

@@ -7,7 +7,7 @@ import os
 
 
 # Output directory
-POLITICIANS_STAGE_01 = path_definitions.POLITICIANS_STAGE_01
+POLITICIANS_STAGE_01 = "../01_preprocessing/06/"
 save_path = os.path.join(POLITICIANS_STAGE_01 + "/mgs.pkl")
 
 if not os.path.exists(POLITICIANS_STAGE_01):

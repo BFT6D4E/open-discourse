@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import requests
 import os
 import regex
 import time
 
 # output directory
-ELECTORAL_TERM_19_20_OUTPUT = path_definitions.ELECTORAL_TERM_19_20_STAGE_01
+ELECTORAL_TERM_19_20_OUTPUT = "02/"
 
 if not os.path.exists(ELECTORAL_TERM_19_20_OUTPUT):
     os.makedirs(ELECTORAL_TERM_19_20_OUTPUT)
@@ -39,24 +39,31 @@ for election_period in election_periods:
         page = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})
 
         soup = BeautifulSoup(page.text, "html.parser")
+        print(soup)
         reached_end = True
 
         # scrape for links
         for link in soup.find_all("a", attrs={"href": regex.compile("xml$")}):
             reached_end = False
             url = "https://www.bundestag.de" + link.get("href")
+            # print(url)
             page = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+            # print(page)
+            # print(page.content)
+            # print(page.apparent_encoding)
             session = regex.search(r"\d{5}(?=-data\.xml)", url).group(0)
 
             print(session)
-            with open(os.path.join(OUTPUT_PATH, session + ".xml"), "w") as file:
-                file.write(
-                    regex.sub(
-                        "</sub>",
-                        "",
-                        regex.sub("<sub>", "", page.content.decode("utf-8")),
+            
+            with open(os.path.join(OUTPUT_PATH, session + ".xml"), "w", encoding="utf-8") as file:
+                    file.write(
+                        regex.sub(
+                            "</sub>",
+                            "",
+                            regex.sub("<sub>", "", page.content.decode()),
+                        )
                     )
-                )
+         
 
             time.sleep(0.1)
         offset += 10

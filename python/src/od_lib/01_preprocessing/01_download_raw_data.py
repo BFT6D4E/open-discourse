@@ -1,4 +1,4 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import requests
 import io
 import zipfile
@@ -6,8 +6,8 @@ import os
 import regex
 
 # output directory
-RAW_XML = path_definitions.RAW_XML
-
+RAW_XML = "01/"
+"""
 zip_links = [
     "https://www.bundestag.de/resource/blob/490392/90738376bb195628b95d117ab5392cfe/pp18-data.zip",
     "https://www.bundestag.de/resource/blob/490378/033276846771aac12dd7109724a1134b/pp17-data.zip",
@@ -47,13 +47,14 @@ for link in zip_links:
 
     z.extractall(save_path)
 
+"""
 
 # Download MDB Stammdaten.
 mp_base_data_link = "https://www.bundestag.de/resource/blob/472878/7d4d417dbb7f7bd44508b3dc5de08ae2/MdB-Stammdaten-data.zip"  # noqa: E501
 
 r = requests.get(mp_base_data_link)
 z = zipfile.ZipFile(io.BytesIO(r.content))
-mp_base_data_path = os.path.join(path_definitions.DATA_RAW, "MP_BASE_DATA")
+mp_base_data_path = os.path.join("MP_BASE_DATA")
 if not os.path.exists(mp_base_data_path):
     os.makedirs(mp_base_data_path)
 z.extractall(mp_base_data_path)

@@ -1,19 +1,19 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import regex
 import os
 
 # input directory
-MGS = path_definitions.POLITICIANS_STAGE_01
-MPS = path_definitions.POLITICIANS_STAGE_02
-FACTIONS = path_definitions.DATA_FINAL
+MGS = "../01_preprocessing/06/"
+MPS = "01/"
+FACTIONS = "../final"
 
 mps = pd.read_pickle(os.path.join(MPS, "mps.pkl"))
 mgs = pd.read_pickle(os.path.join(MGS, "mgs.pkl"))
 factions = pd.read_pickle(os.path.join(FACTIONS, "factions.pkl"))
 
 # output directory
-DATA_FINAL = path_definitions.DATA_FINAL
+DATA_FINAL = "../final"
 if not os.path.exists(DATA_FINAL):
     os.makedirs(DATA_FINAL)
 

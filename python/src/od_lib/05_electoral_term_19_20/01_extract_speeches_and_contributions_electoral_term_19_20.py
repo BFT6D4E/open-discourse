@@ -1,5 +1,5 @@
 from od_lib.helper_functions.extract_contributions import extract
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import numpy as np
 import xml.etree.ElementTree as et
@@ -9,13 +9,13 @@ import datetime
 
 
 # input directory
-ELECTORAL_TERM_19_20_INPUT = path_definitions.ELECTORAL_TERM_19_20_STAGE_02
-FACTIONS = path_definitions.DATA_FINAL
-politicians = path_definitions.DATA_FINAL
+ELECTORAL_TERM_19_20_INPUT = "../01_preprocessing/05/"
+FACTIONS = "../final/"
+politicians = "../final/"
 
 # output directory
-ELECTORAL_TERM_19_20_OUTPUT = path_definitions.ELECTORAL_TERM_19_20_STAGE_03
-CONTRIBUTIONS_SIMPLIFIED = path_definitions.CONTRIBUTIONS_SIMPLIFIED
+ELECTORAL_TERM_19_20_OUTPUT = "01/"
+CONTRIBUTIONS_SIMPLIFIED = "02/"
 
 if not os.path.exists(ELECTORAL_TERM_19_20_OUTPUT):
     os.makedirs(ELECTORAL_TERM_19_20_OUTPUT)
@@ -166,9 +166,7 @@ for electoral_term_folder in sorted(os.listdir(ELECTORAL_TERM_19_20_INPUT)):
     if not os.path.isdir(electoral_term_folder_path):
         continue
 
-    CONTRIBUTIONS_EXTENDED_OUTPUT = os.path.join(
-        path_definitions.CONTRIBUTIONS_EXTENDED_STAGE_01, electoral_term_folder
-    )
+    CONTRIBUTIONS_EXTENDED_OUTPUT = "../01_preprocessing/07/"
 
     ELECTORAL_TERM_SPOKEN_CONTENT = os.path.join(
         ELECTORAL_TERM_19_20_OUTPUT, electoral_term_folder, "speech_content"
@@ -228,6 +226,8 @@ for electoral_term_folder in sorted(os.listdir(ELECTORAL_TERM_19_20_INPUT)):
         # Wrong date in xml file. Fixing manually
         if session == "19158":
             date = "07.05.2020"
+        if session == "20109":
+            continue
         date = (
             datetime.datetime.strptime(date, "%d.%m.%Y") - datetime.datetime(1970, 1, 1)
         ).total_seconds()
@@ -267,6 +267,8 @@ for electoral_term_folder in sorted(os.listdir(ELECTORAL_TERM_19_20_INPUT)):
                     position_raw = name.find("fraktion").text
                 except (ValueError, AttributeError):
                     position_raw = name.find("rolle").find("rolle_lang").text
+                except:
+                    continue
                 faction_abbrev = get_faction_abbrev(
                     str(position_raw), faction_patterns=faction_patterns
                 )

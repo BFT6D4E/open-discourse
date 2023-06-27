@@ -1,14 +1,14 @@
-import od_lib.definitions.path_definitions as path_definitions
+# import od_lib.definitions.path_definitions as path_definitions
 import pandas as pd
 import xml.etree.ElementTree as et
 import os
 import regex
 
 # input directory
-MP_BASE_DATA = path_definitions.MP_BASE_DATA
+MP_BASE_DATA = "MP_BASE_DATA/MDB_STAMMDATEN.XML"
 
 # output directory
-POLITICIANS_STAGE_01 = path_definitions.POLITICIANS_STAGE_01
+POLITICIANS_STAGE_01 = "06/"
 save_path = os.path.join(POLITICIANS_STAGE_01, "mps.pkl")
 
 if not os.path.exists(POLITICIANS_STAGE_01):
